@@ -38,7 +38,7 @@ app.get('/', (req, res) => {
     //res.json('Hello API!')
     db.select('*').from('users')
     .then(users => res.json(users))
-    .catch(err => res.json('Hello ERROR!', err))
+    .catch(err => res.status(404).json(err))
 })
 
 app.post('/signin', signin(db, bcrypt))

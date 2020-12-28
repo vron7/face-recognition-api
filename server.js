@@ -7,7 +7,7 @@ const knex = require('knex');
 
 const connection = process.env.DATABASE_URL ?
     {
-        host : proccess.env.DATABASE_URL,
+        host : process.env.DATABASE_URL,
         ssl: true
     } : {
         host : '127.0.0.1',

@@ -23,7 +23,8 @@ const {handleApiCall, handleImage} = require('./controllers/image')
 const app = express()
 app.use(bodyParser.json());
 app.use(cors());
-const srv = app.listen(3001, () => {console.log('running {-_-} on port:', srv.address().port)})
+const port = process.env.PORT || 3000;
+const srv = app.listen(port, () => {console.log('running {-_-} on port:', port)})
 
 app.get('/', (req, res) => {
     db.select('*').from('users').then(users => res.json(users))

@@ -35,8 +35,10 @@ const port = process.env.PORT || 3001;
 app.listen(port, () => {console.log('running {-_-} on port:', port)})
 
 app.get('/', (req, res) => {
-    res.json('Hello API!')
-    //db.select('*').from('users').then(users => res.json(users))
+    //res.json('Hello API!')
+    db.select('*').from('users')
+    .then(users => res.json(users))
+    .catch(err => res.json('Hello ERROR!', err))
 })
 
 app.post('/signin', signin(db, bcrypt))

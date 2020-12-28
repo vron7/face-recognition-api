@@ -27,7 +27,8 @@ const port = process.env.PORT || 3000;
 const srv = app.listen(port, () => {console.log('running {-_-} on port:', port)})
 
 app.get('/', (req, res) => {
-    db.select('*').from('users').then(users => res.json(users))
+    res.json('Hello API!')
+    //db.select('*').from('users').then(users => res.json(users))
 })
 
 app.post('/signin', signin(db, bcrypt))

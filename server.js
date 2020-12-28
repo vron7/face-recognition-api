@@ -4,14 +4,22 @@ const bcrypt = require('bcrypt-nodejs');
 const cors = require('cors');
 const knex = require('knex');
 
+
+const connection = process.env.DATABASE_URL ?
+    {
+        host : proccess.env.DATABASE_URL,
+        ssl: true
+    } : {
+        host : '127.0.0.1',
+        user : 'postgres',
+        password : 'test',
+        database : 'smart-brain'
+    }
+console.log('dbg connection -------> ', connection)
+
 const db = knex({
     client: 'pg',
-    connection: {
-      host : '127.0.0.1',
-      user : 'postgres',
-      password : 'test',
-      database : 'smart-brain'
-    }
+    connection: connection
   });
 
 //controllers
@@ -23,8 +31,8 @@ const {handleApiCall, handleImage} = require('./controllers/image')
 const app = express()
 app.use(bodyParser.json());
 app.use(cors());
-const port = process.env.PORT || 3000;
-const srv = app.listen(port, () => {console.log('running {-_-} on port:', port)})
+const port = process.env.PORT || 3001;
+app.listen(port, () => {console.log('running {-_-} on port:', port)})
 
 app.get('/', (req, res) => {
     res.json('Hello API!')

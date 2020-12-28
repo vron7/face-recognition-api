@@ -4,6 +4,8 @@ const bcrypt = require('bcrypt-nodejs');
 const cors = require('cors');
 const knex = require('knex');
 
+// resolve Heroku issue
+process.env.NODE_TLS_REJECT_UNAUTHORIZED = 0;
 
 const connection = process.env.DATABASE_URL ?
     {
